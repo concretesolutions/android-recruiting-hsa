@@ -1,6 +1,11 @@
+
+# Concrete Android Recruit Challenge
+
+![Gif](https://raw.githubusercontent.com/concretesolutions/ios-recruiting-hsa/master/assets/Logo-animado-1.gif)
+
 # Crear una app de consulta a la API del [GitHub](https://github.com/)
 
-Desarrollar una app para consultar la [API do GitHub](https://developer.github.com/v3/) y cargar los repositorios más populares del Java. Básese en el mockup fornecido: 
+Desarrollar una app para consultar la [API do GitHub](https://developer.github.com/v3/) y cargar los repositorios más populares del Java. Básese en el mockup abajo: 
 
 ![Captura de tela de 2015-10-22 11-28-03.png](https://bitbucket.org/repo/7ndaaA/images/3102804929-Captura%20de%20tela%20de%202015-10-22%2011-28-03.png)
 
