@@ -1,4 +1,4 @@
-package com.example.androidrecruitchallenge.ui.itemdetail;
+package com.example.androidrecruitchallenge.view.itemdetail;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,10 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.androidrecruitchallenge.R;
-import com.example.androidrecruitchallenge.ui.itemdetail.dummy.DummyContent;
-import com.example.androidrecruitchallenge.ui.itemdetail.dummy.DummyContent.DummyItem;
-
-import java.util.List;
+import com.example.androidrecruitchallenge.view.itemdetail.dummy.DummyContent;
+import com.example.androidrecruitchallenge.view.itemdetail.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.

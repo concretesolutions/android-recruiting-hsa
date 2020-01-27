@@ -1,4 +1,4 @@
-package com.example.androidrecruitchallenge.ui.home;
+package com.example.androidrecruitchallenge.view.home;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,15 +7,24 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.androidrecruitchallenge.R;
-import com.example.androidrecruitchallenge.ui.home.dummy.DummyContent;
-import com.example.androidrecruitchallenge.ui.home.dummy.DummyContent.DummyItem;
+import com.example.androidrecruitchallenge.model.Item;
+import com.example.androidrecruitchallenge.model.RepositoryList;
+import com.example.androidrecruitchallenge.presenter.GetService;
+import com.example.androidrecruitchallenge.view.home.dummy.DummyContent;
+import com.example.androidrecruitchallenge.view.home.dummy.DummyContent.DummyItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +40,9 @@ public class HomeFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    private RepositoryList repositoryList;
+    private List<Item> listItems = new ArrayList<>();
+    private HomeRecyclerViewAdapter adapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -72,7 +84,11 @@ public class HomeFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new HomeRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+            adapter = new HomeRecyclerViewAdapter(listItems, mListener);
+            recyclerView.setAdapter(adapter);
+
+            getGitRepositoryList();
         }
         return view;
     }
@@ -107,6 +123,28 @@ public class HomeFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Item item);
+    }
+
+    private void getGitRepositoryList(){
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.github.com/search/").addConverterFactory(GsonConverterFactory.create()).build();
+
+        GetService getService  = retrofit.create(GetService.class);
+        Call<RepositoryList> call = getService.getGitJavaRepositorys();
+
+        call.enqueue(new Callback<RepositoryList>() {
+            @Override
+            public void onResponse(Call<RepositoryList> call, Response<RepositoryList> response) {
+                repositoryList = response.body();
+                for(Item item : repositoryList.getItems()){
+                    listItems.add(item);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<RepositoryList> call, Throwable t) {
+            }
+        });
     }
 }

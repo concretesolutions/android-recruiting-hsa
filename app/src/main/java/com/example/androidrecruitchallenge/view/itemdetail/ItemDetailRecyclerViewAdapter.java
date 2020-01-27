@@ -1,4 +1,4 @@
-package com.example.androidrecruitchallenge.ui.itemdetail;
+package com.example.androidrecruitchallenge.view.itemdetail;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -7,8 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.androidrecruitchallenge.ui.itemdetail.ItemDetailFragment.OnListFragmentInteractionListener;
-import com.example.androidrecruitchallenge.ui.itemdetail.dummy.DummyContent.DummyItem;
+import com.example.androidrecruitchallenge.R;
+import com.example.androidrecruitchallenge.view.itemdetail.ItemDetailFragment.OnListFragmentInteractionListener;
+import com.example.androidrecruitchallenge.view.itemdetail.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class ItemDetailRecyclerViewAdapter extends RecyclerView.Adapter<ItemDeta
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_itemdetail, parent, false);
+                .inflate(R.layout.fragment_itemdetail_item, parent, false);
         return new ViewHolder(view);
     }
 

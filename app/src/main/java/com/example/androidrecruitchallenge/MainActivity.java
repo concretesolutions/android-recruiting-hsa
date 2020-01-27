@@ -3,19 +3,22 @@ package com.example.androidrecruitchallenge;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.androidrecruitchallenge.model.Item;
+import com.example.androidrecruitchallenge.view.home.HomeFragment;
+import com.example.androidrecruitchallenge.view.home.dummy.DummyContent;
 
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnListFragmentInteractionListener{
+    private HomeFragment.OnListFragmentInteractionListener mListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
     }
 
     @Override
@@ -38,5 +41,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onListFragmentInteraction(Item item) {
+
     }
 }

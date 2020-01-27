@@ -1,4 +1,4 @@
-package com.example.androidrecruitchallenge.ui.home.dummy;
+package com.example.androidrecruitchallenge.view.home.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

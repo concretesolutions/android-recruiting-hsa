@@ -1,4 +1,4 @@
-package com.example.androidrecruitchallenge.ui.home;
+package com.example.androidrecruitchallenge.view.home;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.androidrecruitchallenge.ui.home.HomeFragment.OnListFragmentInteractionListener;
-import com.example.androidrecruitchallenge.ui.home.dummy.DummyContent.DummyItem;
+import com.example.androidrecruitchallenge.R;
+import com.example.androidrecruitchallenge.model.Item;
+import com.example.androidrecruitchallenge.view.home.HomeFragment.OnListFragmentInteractionListener;
+import com.example.androidrecruitchallenge.view.home.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
@@ -19,10 +21,10 @@ import java.util.List;
  */
 public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Item> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public HomeRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public HomeRecyclerViewAdapter(List<Item> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -30,15 +32,15 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_home, parent, false);
+                .inflate(R.layout.fragment_home_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getName());
+        holder.mContentView.setText(mValues.get(position).getOwner().getLogin());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +63,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Item mItem;
 
         public ViewHolder(View view) {
             super(view);
