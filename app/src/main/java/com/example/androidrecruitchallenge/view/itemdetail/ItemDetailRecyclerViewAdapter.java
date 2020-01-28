@@ -67,8 +67,8 @@ public class ItemDetailRecyclerViewAdapter extends RecyclerView.Adapter<ItemDeta
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = (TextView) view.findViewById(R.id.repositoryName);
+            mContentView = (TextView) view.findViewById(R.id.repositoryDescription);
         }
 
         @Override

@@ -28,11 +28,12 @@
         app:layout_constraintGuide_percent="0.24" />
 
     <TextView
-        android:id="@+id/item_number"
+        android:id="@+id/repositoryName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Nombre Repositorio"
+        android:text="@string/repositoryName"
+        android:textAlignment="viewStart"
         android:textAppearance="?attr/textAppearanceListItem"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold"
@@ -41,11 +42,12 @@
         app:layout_constraintTop_toTopOf="@+id/guideline12" />
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/repositoryDescription"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:text="Descripcion del repositorio lorem ipsum dolor sit amet lorem ipsum dolor..."
+        android:text="@string/repositoryDesc"
+        android:textAlignment="viewStart"
         android:textAppearance="?attr/textAppearanceListItem"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
@@ -54,7 +56,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/repositoryAvatarOwner"
         android:layout_width="70dp"
         android:layout_height="70dp"
         app:civ_border_color="#EEEEEE"
@@ -69,66 +71,65 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/repositoryOwnerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="username"
+        android:text="@string/repositoryUserName"
         android:textColor="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/repositoryAvatarOwner" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/repositoryCreateDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sobrenombre"
+        android:text="@string/repositoryCreateDate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/repositoryWatchersIcon"
         android:layout_width="21dp"
-        android:layout_height="19dp"
+        android:layout_height="21dp"
         android:layout_marginStart="8dp"
         android:src="@drawable/baseline_grade_black_48"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="21dp"
-        android:layout_height="21dp"
+        android:id="@+id/repositoryBranchIcon"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:src="@drawable/branch"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline18" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/repositoryWatchesCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="640"
+        android:text="@string/repositoryWatchersCount"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintStart_toEndOf="@+id/repositoryWatchersIcon" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/repositoryStargazersCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="98"
+        android:text="@string/repositoryStargazersCount"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView4" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintStart_toEndOf="@+id/repositoryBranchIcon" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -150,5 +151,28 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.70" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="731dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.93"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:alpha="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:srcCompat="@drawable/divider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

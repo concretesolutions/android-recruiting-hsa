@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
@@ -21,9 +20,6 @@ import com.example.androidrecruitchallenge.R;
 import com.example.androidrecruitchallenge.model.Item;
 import com.example.androidrecruitchallenge.model.RepositoryList;
 import com.example.androidrecruitchallenge.presenter.GetService;
-import com.example.androidrecruitchallenge.view.home.dummy.DummyContent;
-import com.example.androidrecruitchallenge.view.home.dummy.DummyContent.DummyItem;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,14 +31,11 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
-    private RepositoryList repositoryList;
-    private List<Item> listItems = new ArrayList<>();
-    private HomeRecyclerViewAdapter adapter;
+    private static OnListFragmentInteractionListener mListener;
+    private static RepositoryList repositoryList;
+    private static List<Item> listItems = new ArrayList<>();
+    private static HomeRecyclerViewAdapter adapter;
+    //private ProgressBar spinnerHome;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -55,19 +48,12 @@ public class HomeFragment extends Fragment {
     @SuppressWarnings("unused")
     public static HomeFragment newInstance(int columnCount) {
         HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
     }
 
     @Override
@@ -79,16 +65,14 @@ public class HomeFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-            adapter = new HomeRecyclerViewAdapter(listItems, mListener);
+            adapter = new HomeRecyclerViewAdapter(listItems, mListener, this.getContext());
             recyclerView.setAdapter(adapter);
-
-            getGitRepositoryList();
+            //spinnerHome = (ProgressBar)view.findViewById(R.id.progressBarHome);
+            if (listItems.isEmpty()){
+                getGitRepositoryList();
+            }
         }
         return view;
     }
@@ -127,6 +111,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void getGitRepositoryList(){
+        //spinnerHome.setVisibility(View.VISIBLE);
+
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.github.com/search/").addConverterFactory(GsonConverterFactory.create()).build();
 
         GetService getService  = retrofit.create(GetService.class);
@@ -140,10 +126,12 @@ public class HomeFragment extends Fragment {
                     listItems.add(item);
                 }
                 adapter.notifyDataSetChanged();
+                //spinnerHome.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<RepositoryList> call, Throwable t) {
+                //spinnerHome.setVisibility(View.GONE);
             }
         });
     }
