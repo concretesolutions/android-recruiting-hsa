@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.androidrecruitchallenge.R;
-import com.example.androidrecruitchallenge.model.Item;
+import com.example.androidrecruitchallenge.entity.Item;
 import com.example.androidrecruitchallenge.view.home.HomeFragment.OnListFragmentInteractionListener;
 import com.example.androidrecruitchallenge.view.home.dummy.DummyContent.DummyItem;
 

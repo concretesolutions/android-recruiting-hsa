@@ -15,40 +15,31 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.androidrecruitchallenge.R;
-import com.example.androidrecruitchallenge.model.Item;
-import com.example.androidrecruitchallenge.model.RepositoryList;
-import com.example.androidrecruitchallenge.presenter.GetService;
+import com.example.androidrecruitchallenge.entity.Item;
+import com.example.androidrecruitchallenge.entity.RepositoryList;
+import com.example.androidrecruitchallenge.presenter.HomeFragmentPresenterInterface;
+import com.example.androidrecruitchallenge.model.HomeFragmentServiceInterface;
+import com.example.androidrecruitchallenge.utils.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements HomeFragmentView{
 
     private static OnListFragmentInteractionListener mListener;
     private static RepositoryList repositoryList;
     private static List<Item> listItems = new ArrayList<>();
     private static HomeRecyclerViewAdapter adapter;
-    //private ProgressBar spinnerHome;
+    private LinearLayoutManager linearLayoutManager;
+    private HomeFragmentPresenterInterface presenter;
+    private ProgressBar spinner;
+    private static int actualPageLoad = 0;
+    private static int pastVisiblesItems, visibleItemCount, totalItemCount;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public HomeFragment() {
-    }
-
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static HomeFragment newInstance(int columnCount) {
-        HomeFragment fragment = new HomeFragment();
-        return fragment;
     }
 
     @Override
@@ -61,19 +52,38 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_list, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-            adapter = new HomeRecyclerViewAdapter(listItems, mListener, this.getContext());
-            recyclerView.setAdapter(adapter);
-            //spinnerHome = (ProgressBar)view.findViewById(R.id.progressBarHome);
-            if (listItems.isEmpty()){
-                getGitRepositoryList();
-            }
+        Context context = view.getContext();
+        linearLayoutManager = new LinearLayoutManager(context);
+
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        adapter = new HomeRecyclerViewAdapter(listItems, mListener, this.getContext());
+        recyclerView.setAdapter(adapter);
+
+        spinner = (ProgressBar) view.findViewById(R.id.progressBarHome);
+        spinner.setVisibility(View.GONE);
+
+        if (listItems.isEmpty()) {
+            getGitRepositoryList();
         }
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0) //check for scroll down
+                {
+                    visibleItemCount = linearLayoutManager.getChildCount();
+                    totalItemCount = linearLayoutManager.getItemCount();
+                    pastVisiblesItems = linearLayoutManager.findFirstVisibleItemPosition();
+
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                        getGitRepositoryList();
+                    }
+                }
+            }
+        });
         return view;
     }
 
@@ -95,44 +105,50 @@ public class HomeFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(Item item);
     }
 
-    private void getGitRepositoryList(){
-        //spinnerHome.setVisibility(View.VISIBLE);
+    private void getGitRepositoryList() {
+        spinner.setVisibility(View.VISIBLE);
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.github.com/search/").addConverterFactory(GsonConverterFactory.create()).build();
+        actualPageLoad++;
 
-        GetService getService  = retrofit.create(GetService.class);
-        Call<RepositoryList> call = getService.getGitJavaRepositorys();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+
+        HomeFragmentServiceInterface homeFragmentService = retrofit.create(HomeFragmentServiceInterface.class);
+        Call<RepositoryList> call = homeFragmentService.getGitJavaRepositorys(Constants.LANGUAGE_REQUEST_JAVA, Constants.SORT_MODE_STARTS, actualPageLoad);
 
         call.enqueue(new Callback<RepositoryList>() {
             @Override
             public void onResponse(Call<RepositoryList> call, Response<RepositoryList> response) {
                 repositoryList = response.body();
-                for(Item item : repositoryList.getItems()){
-                    listItems.add(item);
+                if (repositoryList != null && repositoryList.getItems() != null) {
+                    for (Item item : repositoryList.getItems()) {
+                        listItems.add(item);
+                    }
                 }
                 adapter.notifyDataSetChanged();
-                //spinnerHome.setVisibility(View.GONE);
+                spinner.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<RepositoryList> call, Throwable t) {
-                //spinnerHome.setVisibility(View.GONE);
+                actualPageLoad--;
+                spinner.setVisibility(View.GONE);
             }
         });
+    }
+
+    public void addRepositoryItem(Item item){
+
+    }
+
+    public void showHideSpinner(boolean show){
+
+    }
+
+    public void notifyRepositoryListUpdate(){
+
     }
 }

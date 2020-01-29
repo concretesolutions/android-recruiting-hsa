@@ -1,5 +1,5 @@
 
-package com.example.androidrecruitchallenge.model;
+package com.example.androidrecruitchallenge.entity;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,23 +1,19 @@
 package com.example.androidrecruitchallenge.presenter;
 
-import android.view.View;
+import com.example.androidrecruitchallenge.model.HomeFragmentModel;
+import com.example.androidrecruitchallenge.model.HomeFragmentModelInterface;
+import com.example.androidrecruitchallenge.view.home.HomeFragmentView;
 
-import com.example.androidrecruitchallenge.model.Item;
-import com.example.androidrecruitchallenge.model.RepositoryList;
+public class HomeFragmentPresenter implements HomeFragmentPresenterInterface{
+    private HomeFragmentView homeView;
+    private HomeFragmentModelInterface homeModel;
 
-import java.util.ArrayList;
-
-public class HomeFragmentPresenter {
-    private View view;
-    private RepositoryList repositoryList;
-
-    public HomeFragmentPresenter(View view){
-        this.view = view;
-        this.repositoryList = new RepositoryList();
-        this.repositoryList.setItems(new ArrayList<Item>());
+    public HomeFragmentPresenter(HomeFragmentView view) {
+        homeModel = new HomeFragmentModel();
+        this.homeView = view;
     }
 
-    public void loadListRepository(){
+    public void loadRepositoryList(){
 
     }
 }
