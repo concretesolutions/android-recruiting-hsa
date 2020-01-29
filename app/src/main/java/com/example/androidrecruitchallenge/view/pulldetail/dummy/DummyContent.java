@@ -1,4 +1,4 @@
-package com.example.androidrecruitchallenge.view.itemdetail.dummy;
+package com.example.androidrecruitchallenge.view.pulldetail.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

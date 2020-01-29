@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".view.itemdetail.ItemDetailFragment"
-    tools:listitem="@layout/fragment_itemdetail_item" />
+    tools:context=".view.pulldetail.PullsDetailFragment"
+    tools:listitem="@layout/fragment_pulldetail_item" />

@@ -1,4 +1,4 @@
-package com.example.androidrecruitchallenge.view.itemdetail;
+package com.example.androidrecruitchallenge.view.pulldetail;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.androidrecruitchallenge.R;
-import com.example.androidrecruitchallenge.view.itemdetail.ItemDetailFragment.OnListFragmentInteractionListener;
-import com.example.androidrecruitchallenge.view.itemdetail.dummy.DummyContent.DummyItem;
+import com.example.androidrecruitchallenge.view.pulldetail.PullsDetailFragment.OnListFragmentInteractionListener;
+import com.example.androidrecruitchallenge.view.pulldetail.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
@@ -18,12 +18,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class ItemDetailRecyclerViewAdapter extends RecyclerView.Adapter<ItemDetailRecyclerViewAdapter.ViewHolder> {
+public class PullsDetailRecyclerViewAdapter extends RecyclerView.Adapter<PullsDetailRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public ItemDetailRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public PullsDetailRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -31,7 +31,7 @@ public class ItemDetailRecyclerViewAdapter extends RecyclerView.Adapter<ItemDeta
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_itemdetail_item, parent, false);
+                .inflate(R.layout.fragment_pulldetail_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -67,8 +67,8 @@ public class ItemDetailRecyclerViewAdapter extends RecyclerView.Adapter<ItemDeta
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.repositoryName);
-            mContentView = (TextView) view.findViewById(R.id.repositoryDescription);
+            mIdView = (TextView) view.findViewById(R.id.pullRequestTitle);
+            mContentView = (TextView) view.findViewById(R.id.pullRequestDescription);
         }
 
         @Override

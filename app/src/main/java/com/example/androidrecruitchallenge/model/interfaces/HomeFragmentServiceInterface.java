@@ -1,6 +1,6 @@
-package com.example.androidrecruitchallenge.model;
+package com.example.androidrecruitchallenge.model.interfaces;
 
-import com.example.androidrecruitchallenge.entity.RepositoryList;
+import com.example.androidrecruitchallenge.entity.home.RepositoryList;
 import com.example.androidrecruitchallenge.utils.Constants;
 
 import retrofit2.Call;

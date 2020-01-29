@@ -1,4 +1,4 @@
-package com.example.androidrecruitchallenge.view.itemdetail;
+package com.example.androidrecruitchallenge.view.pulldetail;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import com.example.androidrecruitchallenge.R;
-import com.example.androidrecruitchallenge.view.itemdetail.dummy.DummyContent;
-import com.example.androidrecruitchallenge.view.itemdetail.dummy.DummyContent.DummyItem;
+import com.example.androidrecruitchallenge.view.pulldetail.dummy.DummyContent;
+import com.example.androidrecruitchallenge.view.pulldetail.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
@@ -22,7 +23,7 @@ import com.example.androidrecruitchallenge.view.itemdetail.dummy.DummyContent.Du
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class ItemDetailFragment extends Fragment {
+public class PullsDetailFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -34,13 +35,13 @@ public class ItemDetailFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ItemDetailFragment() {
+    public PullsDetailFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ItemDetailFragment newInstance(int columnCount) {
-        ItemDetailFragment fragment = new ItemDetailFragment();
+    public static PullsDetailFragment newInstance(int columnCount) {
+        PullsDetailFragment fragment = new PullsDetailFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -59,7 +60,7 @@ public class ItemDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_itemdetail_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_pulldetail_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -70,8 +71,9 @@ public class ItemDetailFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new ItemDetailRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new PullsDetailRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
+
         return view;
     }
 

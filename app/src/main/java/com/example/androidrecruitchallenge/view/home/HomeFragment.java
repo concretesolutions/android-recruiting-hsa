@@ -6,11 +6,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,16 +13,16 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.example.androidrecruitchallenge.R;
-import com.example.androidrecruitchallenge.entity.Item;
-import com.example.androidrecruitchallenge.entity.RepositoryList;
-import com.example.androidrecruitchallenge.presenter.HomeFragmentPresenterInterface;
-import com.example.androidrecruitchallenge.model.HomeFragmentServiceInterface;
-import com.example.androidrecruitchallenge.utils.Constants;
+import com.example.androidrecruitchallenge.entity.home.Item;
+import com.example.androidrecruitchallenge.entity.home.RepositoryList;
+import com.example.androidrecruitchallenge.presenter.HomeFragmentPresenter;
+import com.example.androidrecruitchallenge.presenter.interfaces.HomeFragmentPresenterInterface;
+import com.example.androidrecruitchallenge.view.home.interfaces.HomeFragmentView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements HomeFragmentView{
+public class HomeFragment extends Fragment implements HomeFragmentView {
 
     private static OnListFragmentInteractionListener mListener;
     private static RepositoryList repositoryList;
@@ -64,6 +59,8 @@ public class HomeFragment extends Fragment implements HomeFragmentView{
 
         spinner = (ProgressBar) view.findViewById(R.id.progressBarHome);
         spinner.setVisibility(View.GONE);
+
+        presenter = new HomeFragmentPresenter(this);
 
         if (listItems.isEmpty()) {
             getGitRepositoryList();
@@ -111,44 +108,16 @@ public class HomeFragment extends Fragment implements HomeFragmentView{
 
     private void getGitRepositoryList() {
         spinner.setVisibility(View.VISIBLE);
-
         actualPageLoad++;
-
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
-
-        HomeFragmentServiceInterface homeFragmentService = retrofit.create(HomeFragmentServiceInterface.class);
-        Call<RepositoryList> call = homeFragmentService.getGitJavaRepositorys(Constants.LANGUAGE_REQUEST_JAVA, Constants.SORT_MODE_STARTS, actualPageLoad);
-
-        call.enqueue(new Callback<RepositoryList>() {
-            @Override
-            public void onResponse(Call<RepositoryList> call, Response<RepositoryList> response) {
-                repositoryList = response.body();
-                if (repositoryList != null && repositoryList.getItems() != null) {
-                    for (Item item : repositoryList.getItems()) {
-                        listItems.add(item);
-                    }
-                }
-                adapter.notifyDataSetChanged();
-                spinner.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onFailure(Call<RepositoryList> call, Throwable t) {
-                actualPageLoad--;
-                spinner.setVisibility(View.GONE);
-            }
-        });
+        presenter.loadRepositoryList(actualPageLoad);
     }
 
     public void addRepositoryItem(Item item){
-
-    }
-
-    public void showHideSpinner(boolean show){
-
+        listItems.add(item);
     }
 
     public void notifyRepositoryListUpdate(){
-
+        adapter.notifyDataSetChanged();
+        spinner.setVisibility(View.GONE);
     }
 }

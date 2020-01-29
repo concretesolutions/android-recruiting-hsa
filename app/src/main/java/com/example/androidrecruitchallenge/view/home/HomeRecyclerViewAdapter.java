@@ -12,19 +12,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.androidrecruitchallenge.R;
-import com.example.androidrecruitchallenge.entity.Item;
+import com.example.androidrecruitchallenge.entity.home.Item;
 import com.example.androidrecruitchallenge.view.home.HomeFragment.OnListFragmentInteractionListener;
-import com.example.androidrecruitchallenge.view.home.dummy.DummyContent.DummyItem;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder> {
 
     private final List<Item> repositoryList;
@@ -33,8 +27,6 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
     String pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     String pattern2 = "dd-MM-yyyy";
-    String dateString;
-    Date date;
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
     SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat(pattern2);
