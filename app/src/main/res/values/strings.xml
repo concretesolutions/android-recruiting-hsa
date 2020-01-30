@@ -9,5 +9,7 @@
     <string name="repositoryStargazersCount">98</string>
     <string name="pullRequestTitle">Titulo pull request</string>
     <string name="pullRequestDesc">Descripcion del pull request lorem ipsum dolor sit amet lorem ipsum dolor amet lorem ipsum dolor amet lorem ipsum dolor amet lorem ipsum dolor</string>
-    <string name="pullRequestStatus">Open</string>
+    <string name="pullRequestStatus">open</string>
+    <string name="homeTittle">Github JavaPop</string>
+    <string name="pullRequestListEmptyDesc">No existen pull request que mostrar</string>
 </resources>

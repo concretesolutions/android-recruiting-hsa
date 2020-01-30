@@ -15,7 +15,7 @@
         android:text="@string/pullRequestTitle"
         android:textAlignment="viewStart"
         android:textAppearance="?attr/textAppearanceListItem"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/colorUserName"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,13 +41,14 @@
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/pullRequestAvatarOwner"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_marginStart="16dp"
         app:civ_border_color="@color/colorPrimaryDark"
         app:civ_border_width="1dp"
         app:civ_shadow="false"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
         tools:srcCompat="@tools:sample/avatars" />
@@ -55,9 +56,12 @@
     <TextView
         android:id="@+id/pullRequestOwnerName"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
         android:text="@string/repositoryUserName"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorUserName"
+        app:layout_constraintBottom_toTopOf="@+id/guideline13"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
@@ -66,9 +70,12 @@
         android:id="@+id/pullRequestCreateDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:text="@string/repositoryCreateDate"
+        android:textAlignment="viewStart"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
         app:layout_constraintTop_toBottomOf="@+id/pullRequestOwnerName" />
 
@@ -111,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.74" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
@@ -128,27 +135,35 @@
         app:layout_constraintGuide_percent="0.16" />
 
     <ImageView
-        android:id="@+id/pullRequest"
+        android:id="@+id/pullRequestIcon"
         android:layout_width="20dp"
         android:layout_height="25dp"
         android:layout_marginEnd="18dp"
         android:contentDescription="@android:string/defaultMsisdnAlphaTag"
+        android:tint="@color/colorPullRequestOpen"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
         app:srcCompat="@drawable/pull_request_open" />
 
     <TextView
-        android:id="@+id/statusPullRequest"
+        android:id="@+id/pullRequestStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="4dp"
         android:text="@string/pullRequestStatus"
-        android:textColor="#558B2F"
+        android:textColor="@color/colorPullRequestOpen"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
-        app:layout_constraintEnd_toStartOf="@+id/pullRequest"
+        app:layout_constraintEnd_toStartOf="@+id/pullRequestIcon"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.79" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

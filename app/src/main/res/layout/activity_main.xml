@@ -18,7 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimaryDark"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Github JavaPop" />
+            app:title="@string/homeTittle" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -27,11 +27,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
+        android:paddingTop="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <fragment
             android:id="@+id/fragment3"
-            android:name="com.example.androidrecruitchallenge.view.home.HomeFragment"
+            android:name="com.android.androidrecruitchallenge.view.home.HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintLeft_toLeftOf="parent"
