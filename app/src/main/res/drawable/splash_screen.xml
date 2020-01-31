@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list android:layout_width="222dp"
+    android:layout_height="104dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:drawable="@color/cardview_light_background" />
+        <item>
+            <bitmap
+                android:gravity="center"
+                android:src="@mipmap/ic_launcher_git_hub_foreground" />
+        </item>
+    </layer-list>
