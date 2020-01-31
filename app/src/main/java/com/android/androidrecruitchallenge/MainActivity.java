@@ -1,5 +1,7 @@
 package com.android.androidrecruitchallenge;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -45,6 +47,14 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     }
     @Override
     public void onListFragmentInteraction(PullRequest pullRequest){
+        if(pullRequest.getHtmlUrl() !=null && pullRequest.getHtmlUrl().length()>0) {
+            String url = pullRequest.getHtmlUrl();
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                url = "http://" + url;
+            }
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(browserIntent);
+        }
 
     }
 
