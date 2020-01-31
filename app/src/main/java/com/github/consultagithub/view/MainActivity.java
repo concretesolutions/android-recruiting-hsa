@@ -3,6 +3,9 @@ package com.github.consultagithub.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -40,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements RepositoryListFra
     }
     @Override
     public void onListFragmentInteraction(PullRequest item) {
+        if(!item.getHtmlUrl().isEmpty()){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getHtmlUrl()));
+        startActivity(browserIntent);
+        }
 
     }
 
