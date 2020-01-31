@@ -51,8 +51,8 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         holder.repositoryName.setText(repositoryList.get(position).getName());
         holder.repositoryDesc.setText(repositoryList.get(position).getDescription().trim());
         holder.repositoryUserName.setText(repositoryList.get(position).getOwner().getLogin());
-        holder.repositoryWatchersCount.setText(String.valueOf(repositoryList.get(position).getWatchersCount()));
-        holder.repositoryStarGazersCount.setText(String.valueOf(repositoryList.get(position).getStargazersCount()));
+        holder.repositoryStargazersCount.setText(String.valueOf(repositoryList.get(position).getStargazersCount()));
+        holder.repositoryForksCount.setText(String.valueOf(repositoryList.get(position).getForksCount()));
         Glide.with(this.context)
                 .load(repositoryList.get(position).getOwner().getAvatarUrl())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -88,8 +88,8 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         public final TextView repositoryDesc;
         public final TextView repositoryUserName;
         public final TextView repositoryCreateDate;
-        public final TextView repositoryWatchersCount;
-        public final TextView repositoryStarGazersCount;
+        public final TextView repositoryStargazersCount;
+        public final TextView repositoryForksCount;
         public final ImageView repositoryOwnerAvatar;
         public Item mItem;
 
@@ -100,8 +100,8 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
             repositoryDesc = (TextView) view.findViewById(R.id.repositoryDescription);
             repositoryUserName = (TextView) view.findViewById(R.id.repositoryOwnerName);
             repositoryCreateDate = (TextView) view.findViewById(R.id.repositoryCreateDate);
-            repositoryWatchersCount = (TextView) view.findViewById(R.id.repositoryWatchesCount);
-            repositoryStarGazersCount = (TextView) view.findViewById(R.id.repositoryStargazersCount);
+            repositoryStargazersCount = (TextView) view.findViewById(R.id.repositoryStargazersCount);
+            repositoryForksCount = (TextView) view.findViewById(R.id.repositoryForksCount);
             repositoryOwnerAvatar = (ImageView) view.findViewById(R.id.repositoryAvatarOwner);
         }
 

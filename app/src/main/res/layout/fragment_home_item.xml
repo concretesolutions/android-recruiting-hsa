@@ -116,7 +116,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline18" />
 
     <TextView
-        android:id="@+id/repositoryWatchesCount"
+        android:id="@+id/repositoryStargazersCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
@@ -128,7 +128,7 @@
         app:layout_constraintStart_toEndOf="@+id/repositoryWatchersIcon" />
 
     <TextView
-        android:id="@+id/repositoryStargazersCount"
+        android:id="@+id/repositoryForksCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
