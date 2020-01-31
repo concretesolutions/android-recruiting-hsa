@@ -72,6 +72,7 @@
         android:layout_width="377dp"
         android:layout_height="53dp"
         android:ellipsize="end"
+        android:maxLines="2"
         android:text="Titulo Pull Request"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#0D47A1"

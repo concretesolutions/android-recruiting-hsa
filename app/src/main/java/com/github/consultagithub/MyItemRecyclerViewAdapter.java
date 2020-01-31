@@ -53,8 +53,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         Picasso.get().load(url).into(holder.imageView2);
         holder.txtNombreRepo.setText(itemList.get(position).getName());
         holder.txtDescripcion.setText(itemList.get(position).getDescription());
-        holder.txtBranch.setText(String.valueOf(itemList.get(position).getWatchers()));
-        holder.txtValoracion.setText(String.valueOf(itemList.get(position).getScore()));
+        holder.txtBranch.setText(String.valueOf(itemList.get(position).getForksCount()));
+        holder.txtValoracion.setText(String.valueOf(itemList.get(position).getStargazersCount()));
         
 
 
