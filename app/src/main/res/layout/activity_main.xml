@@ -13,8 +13,7 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <include
-            layout="@layout/app_bar"/>
+
 
 
         <androidx.fragment.app.FragmentContainerView
