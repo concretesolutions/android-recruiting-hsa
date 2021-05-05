@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            >
+
+            <TextView
+                android:id="@+id/nameTextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="#4683b0"
+                android:textStyle="bold"
+                tools:text="nombre repositoriooo"
+                android:layout_marginEnd="16dp"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/autorRelativeLayout"
+                />
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:singleLine="false"
+                tools:text="descripcion del repositorio que donde tendr mucho contenido de algun pull request"
+                android:layout_below="@+id/nameTextview"
+                android:layout_marginEnd="16dp"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/autorRelativeLayout"
+                android:layout_marginRight="8dp"/>
+
+
+
+            <RelativeLayout
+                android:id="@+id/followRelativeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/descriptionTextView"
+                android:layout_marginTop="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/forkImageView"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_fork"
+                    />
+
+
+                <TextView
+                    android:id="@+id/forkTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#EEBA0D"
+                    android:textSize="17sp"
+                    android:text="45"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toRightOf="@+id/forkImageView"
+                    />
+
+
+            <ImageView
+                android:id="@+id/starImageView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star"
+                android:layout_toRightOf="@+id/forkTextView"
+                android:layout_marginLeft="8dp"
+                />
+
+
+            <TextView
+                android:id="@+id/starTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#EEBA0D"
+                android:textSize="17sp"
+                android:text="45"
+                android:layout_marginEnd="5dp"
+                android:layout_toRightOf="@+id/starImageView"
+                />
+
+            </RelativeLayout>
+
+
+
+
+            <RelativeLayout
+                android:id="@+id/autorRelativeLayout"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp">
+
+                <ImageView
+                    android:id="@+id/repositoryImageView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_user"
+                    android:layout_centerHorizontal="true" />
+
+
+                <TextView
+                    android:id="@+id/autorTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4683b0"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/repositoryImageView"
+                    android:layout_marginEnd="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:singleLine="false" />
+
+                <TextView
+                    android:id="@+id/nickTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#99A3A4"
+                    android:textSize="18sp"
+                    android:text="sobrenome"
+                    android:layout_below="@+id/autorTextView"
+                    android:layout_marginEnd="5dp"
+                    android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DBDBDB"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"/>
+
+    </LinearLayout>
+</layout>

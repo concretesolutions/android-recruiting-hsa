@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:id="@+id/nameTextview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="#4683b0"
+                android:textStyle="bold"
+                tools:text="nombre repositoriooo"
+                android:layout_marginEnd="16dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="false" />
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:singleLine="false"
+                tools:text="descripcion del repositorio que donde tendrá
+                            mucho contenido de algun pull request"
+                android:layout_below="@+id/nameTextview"
+                android:layout_marginEnd="16dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/autorRelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:id="@+id/avatarImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_user"
+                android:layout_alignParentLeft="true" />
+
+
+            <TextView
+                android:id="@+id/autorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="Alastorr"
+                android:layout_toRightOf="@+id/avatarImageView"
+                android:layout_marginLeft="5dp"/>
+
+            <TextView
+                android:id="@+id/nickTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#99A3A4"
+                android:textSize="18sp"
+                android:text="sobrenome"
+                android:layout_below="@+id/autorTextView"
+                android:layout_toRightOf="@+id/avatarImageView"
+                android:layout_marginLeft="5dp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DBDBDB"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_alignParentBottom="true" />
+
+    </LinearLayout>
+</layout>
