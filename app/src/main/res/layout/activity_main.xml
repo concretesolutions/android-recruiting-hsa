@@ -8,12 +8,15 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".MainActivity">
 
 
+        <include
+            layout="@layout/app_bar"/>
 
 
         <androidx.fragment.app.FragmentContainerView
@@ -25,5 +28,5 @@
             app:navGraph="@navigation/main_nav_graph" />
 
 
-    </RelativeLayout>
+    </LinearLayout>
 </layout>

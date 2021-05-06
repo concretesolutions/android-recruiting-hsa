@@ -8,8 +8,7 @@
         android:orientation="vertical"
         tools:context=".repository.RepositoryFragment">
 
-        <include
-            layout="@layout/app_bar"/>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/repositoryRecyclerView"

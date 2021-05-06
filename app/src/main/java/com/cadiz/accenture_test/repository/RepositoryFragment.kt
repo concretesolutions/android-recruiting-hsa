@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cadiz.accenture_test.*
 import com.cadiz.accenture_test.api.ApiResponseStatus
 import com.cadiz.accenture_test.api.Repository
+import kotlinx.android.synthetic.main.app_bar.*
 import java.lang.ClassCastException
 
 
@@ -38,7 +40,7 @@ class RepositoryFragment : Fragment() {
     ): View? {
 
         val view :View  = inflater.inflate(R.layout.fragment_repository, container, false)
-        setupToolbar(view)
+        setupToolbar()
         val repositoryRecyclerView : RecyclerView = view.findViewById(R.id.repositoryRecyclerView)
         val repositoryProgressBar : ProgressBar = view.findViewById(R.id.repositoryProgressBar)
         val adapter =  loadRecyclerView(repositoryRecyclerView)
@@ -61,8 +63,8 @@ class RepositoryFragment : Fragment() {
     }
 
 
-    private fun setupToolbar(view: View) {
-        val toolbar  = view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.mainToolbar)
+    private fun setupToolbar() {
+        val toolbar = (activity as MainActivity).findViewById<Toolbar>(R.id.mainToolbar)
         toolbar.title = getString(R.string.app_name)
         toolbar.setTitleTextColor(Color.WHITE)
     }

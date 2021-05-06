@@ -9,17 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cadiz.accenture_test.MainActivity
 import com.cadiz.accenture_test.R
 import com.cadiz.accenture_test.api.ApiResponseStatus
 import com.cadiz.accenture_test.api.PullRequest
 import com.cadiz.accenture_test.api.Repository
-import com.cadiz.accenture_test.repository.MainViewModel
-import com.cadiz.accenture_test.repository.RepositorySelectListener
 
 
 class PullRequestFragment : Fragment() {
@@ -35,7 +35,7 @@ class PullRequestFragment : Fragment() {
         val repository = args.repository
         val pullRequestRecyclerView : RecyclerView = view.findViewById(R.id.pullRequestRecyclerView)
         val pullRequestProgressBar : ProgressBar = view.findViewById(R.id.pullRequestProgressBar)
-        setupToolbar(view)
+        setupToolbar()
         requireActivity().setTitle(R.string.pull_request_fragment_title);
 
         val adapter =  loadRecyclerView(pullRequestRecyclerView)
@@ -63,8 +63,8 @@ class PullRequestFragment : Fragment() {
     }
 
 
-    private fun setupToolbar(view: View) {
-        val toolbar  = view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.mainToolbar)
+    private fun setupToolbar() {
+        val toolbar = (activity as MainActivity).findViewById<Toolbar>(R.id.mainToolbar)
         toolbar.title = getString(R.string.pull_request_fragment_title)
         toolbar.setTitleTextColor(Color.WHITE)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white)

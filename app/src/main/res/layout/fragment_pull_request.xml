@@ -7,8 +7,7 @@
     android:orientation="vertical"
     tools:context=".pullrequest.PullRequestFragment">
 
-    <include
-        layout="@layout/app_bar"/>
+
 
 
     <LinearLayout
