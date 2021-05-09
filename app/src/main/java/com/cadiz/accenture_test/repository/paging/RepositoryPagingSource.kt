@@ -1,19 +1,35 @@
-package com.cadiz.accenture_test.repository
+package com.cadiz.accenture_test.repository.paging
 
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.cadiz.accenture_test.api.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
-class MainRepository {
+class RepositoryPagingSource() : PagingSource<Int, Repository>() {
 
-     suspend  fun fetchRepositories(): MutableList<Repository> {
-        return withContext(Dispatchers.IO){
-            // TODO AGREGAR PAGINACION
-            val repoJsonResponse : RepoJsonResponse = service.getRepository(1)
-            val repoList = parseResult(repoJsonResponse)
-            repoList
-        }
+
+    override fun getRefreshKey(state: PagingState<Int, Repository>): Int? {
+        return null
     }
+
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Repository> {
+        return try {
+            val currentPage = params.key ?: 1
+            val response = service.getRepository(currentPage)
+            val repoList = parseResult(response)
+            val responseData = mutableListOf<Repository>()
+            responseData.addAll(repoList)
+
+            LoadResult.Page(
+                data = responseData,
+                prevKey = if (currentPage == 1) null else -1,
+                nextKey = currentPage.plus(1)
+            )
+        } catch (e: Exception) {
+            LoadResult.Error(e)
+        }
+
+    }
+
 
     private fun parseResult(ghJsonResponse: RepoJsonResponse): MutableList<Repository> {
         val repoList: MutableList<Repository> = mutableListOf<Repository>()

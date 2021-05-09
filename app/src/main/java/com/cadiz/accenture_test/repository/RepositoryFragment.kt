@@ -11,12 +11,17 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cadiz.accenture_test.*
 import com.cadiz.accenture_test.api.ApiResponseStatus
+import com.cadiz.accenture_test.api.PullRequest
 import com.cadiz.accenture_test.api.Repository
-import kotlinx.android.synthetic.main.app_bar.*
+import com.cadiz.accenture_test.pullrequest.PullRequestAdapter
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.lang.ClassCastException
 
 
@@ -24,6 +29,8 @@ class RepositoryFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var repositorySelectListener: RepositorySelectListener
+
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -49,8 +56,12 @@ class RepositoryFragment : Fragment() {
             repositorySelectListener.RepositorySelected(it)
         }
         loadViewModelProvider()
-        loadRepositoryList(adapter)
+
+        loadingPagingFlow(adapter)
+
         loadProgressBar(repositoryProgressBar)
+
+
         return view;
     }
 
@@ -63,17 +74,20 @@ class RepositoryFragment : Fragment() {
     }
 
 
+    private fun loadingPagingFlow(adapter: RepositoryAdapter) {
+        lifecycleScope.launch {
+            viewModel.repoPagingFlow.collect {
+
+                adapter.submitData(it)
+            }
+        }
+    }
+
+
     private fun setupToolbar() {
         val toolbar = (activity as MainActivity).findViewById<Toolbar>(R.id.mainToolbar)
         toolbar.title = getString(R.string.app_name)
         toolbar.setTitleTextColor(Color.WHITE)
-    }
-
-    private fun loadRepositoryList(adapter: RepositoryAdapter) {
-        viewModel.repositoryList.observe(viewLifecycleOwner, Observer {
-                repoList: MutableList<Repository> ->
-            adapter.submitList(repoList)
-        })
     }
 
     private fun loadRecyclerView(repoRecyclerView :RecyclerView): RepositoryAdapter {

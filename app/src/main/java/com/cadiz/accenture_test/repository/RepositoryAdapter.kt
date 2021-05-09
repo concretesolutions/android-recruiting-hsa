@@ -2,6 +2,7 @@ package com.cadiz.accenture_test.repository
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.cadiz.accenture_test.api.Repository
 import com.cadiz.accenture_test.databinding.RepoListItemBinding
 
-class RepositoryAdapter(context :Context): ListAdapter<Repository, RepositoryAdapter.RepositoryViewHolder>(DiffCallback) {
+class RepositoryAdapter(context :Context): PagingDataAdapter<Repository, RepositoryAdapter.RepositoryViewHolder>(DiffCallback) {
 
 
     companion object DiffCallback : DiffUtil.ItemCallback<Repository>(){
@@ -32,25 +33,25 @@ class RepositoryAdapter(context :Context): ListAdapter<Repository, RepositoryAda
     }
 
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
-        val repository : Repository = getItem(position)
+        val repository : Repository? = getItem(position)
         holder.bind(repository)
 
     }
 
     inner class RepositoryViewHolder(private val binding: RepoListItemBinding):
         RecyclerView.ViewHolder(binding.root){
-        fun bind(repository: Repository){
-            binding.nameTextview.text = repository.name
-            binding.autorTextView.text = repository.autor
-            binding.descriptionTextView.text = repository.description
-            binding.forkTextView.text = repository.fork_count.toString()
-            binding.starTextView.text = repository.star_count.toString()
+        fun bind(repository: Repository?){
+            binding.nameTextview.text = repository?.name
+            binding.autorTextView.text = repository?.autor
+            binding.descriptionTextView.text = repository?.description
+            binding.forkTextView.text = repository?.fork_count.toString()
+            binding.starTextView.text = repository?.star_count.toString()
 
-            Glide.with(itemView.getContext()).load(repository.avatar_url).circleCrop().into(binding.repositoryImageView);
+            Glide.with(itemView.getContext()).load(repository?.avatar_url).circleCrop().into(binding.repositoryImageView);
 
             binding.root.setOnClickListener{
                 if(::onItemClickListener.isInitialized){
-                    onItemClickListener(repository)
+                    onItemClickListener(repository!!)
                 }
             }
         }
