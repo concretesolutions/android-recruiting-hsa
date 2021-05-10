@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".pullrequest.PullRequestFragment">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:layout_marginBottom="20dp"
+        android:background="#DBDBDB">
+
+        <TextView
+            android:id="@+id/open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="#EEBA0D"
+            android:textStyle="bold"
+            android:text="16 opened"
+            android:layout_marginEnd="16dp"
+            />
+
+        <TextView
+            android:id="@+id/closed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text="/ 800 closed"
+            android:layout_marginEnd="16dp"
+            />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pullRequestRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/pullRequestProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+</LinearLayout>
